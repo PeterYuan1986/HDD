@@ -32,24 +32,65 @@
                 <div class="search_icon">
                     <ul>
                         <li>
+                            {#                            <div class="dropdown show">#}
+                            {#                                <a class="btn  dropdown-toggle" href="#" role="button"#}
+                            {#                                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"#}
+                            {#                                   aria-expanded="false">#}
+                            {#                                    <img src="{% static  'images/user-icon.png' %}">#}
+                            {#                                </a>#}
+                            {##}
+                            {#                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">#}
+                            {#                                    <a class="dropdown-item" href="#">Action</a>#}
+                            {#                                    <a class="dropdown-item" href="#">Another action</a>#}
+                            {#                                    <a class="dropdown-item" href="#">Something else here</a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+
                             <div class="dropdown show">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    <img src="{% static  'images/user-icon.png' %}">
+                                <a class="dropdown-toggle" href="#" id="userDropdown" role="button"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-fw fa-user-gear  fa-beat text-dark mr-2" style="color: #201f51;font-size:32px"></i>
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="userDropdown">
+                                    {% if request.user.is_authenticated %}
+                                        <a class="dropdown-item" href="/order-history">
+                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Order History
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'account_reset_password' %}">
+                                            <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Reset Password
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'account_email' %}">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            E-mails Management
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout
+                                        </a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="{% url 'account_login' %}">
+                                            <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Sign In
+                                        </a>
+
+                                        <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                            <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Sign Up
+                                        </a>
+                                    {% endif %}
+
+
                                 </div>
                             </div>
 
 
                         </li>
-                        <li><a href="#"><img src="{% static  'images/bag-icon.png' %}"></a></li>
-                        <li><a href="#"><img src="{% static  'images/search-icon.png' %}"></a></li>
                     </ul>
                 </div>
             </div>

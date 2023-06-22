@@ -22,3 +22,7 @@ def about(request):
 
 def service(request):
     return render(request, 'service.html')
+
+
+def test(request):
+    return render(request, 'test.html')
